@@ -19,8 +19,3 @@ FORM user_command USING p_ucomm TYPE sy-ucomm
     WHEN OTHERS.
   ENDCASE.
 ENDFORM.
-*&---------------------------------------------------------------------*
-
-FORM clickkk .
-
-ENDFORM.
