@@ -1,0 +1,26 @@
+*&---------------------------------------------------------------------*
+*& Report ZBK_FLY_PROGRAMMER
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zbk_fly_programmer.
+
+INCLUDE zbk_getprojectveriables.
+INCLUDE zbk_getflysqlvalues.
+INCLUDE zbk_reusealvfunch.
+INCLUDE zbk_fieldcatalogvalues.
+INCLUDE zbk_eventsvalues.
+
+START-OF-SELECTION.
+* Get Sql list Select Values
+  PERFORM get_flysqlvalues.
+
+*Get Layout Values
+  PERFORM get_layoutvalues.
+
+* Login Screen And sy-ucomm Values
+  CALL SCREEN 0100.
+
+* Get Sql Data Values
+  INCLUDE zbk_loginvalues.
+  INCLUDE zbk_fly_programmer_get_pbopai.
