@@ -1,0 +1,10 @@
+
+FORM get_statuseventvalues .
+  gs_events-name = slis_ev_pf_status_set.
+  gs_events-form = 'STATUS_VALUES'.   " PF-STATUS de#i#tiren FORM ça#r#l#yor
+  APPEND gs_events TO gv_events.
+ENDFORM.
+
+FORM status_values USING rt_extab TYPE slis_t_extab.
+  SET PF-STATUS 'STANDARD'.  " Yasakl# butonlar listesi uygulan#yor
+ENDFORM.

@@ -1,0 +1,26 @@
+MODULE status_0100 OUTPUT.
+  SET PF-STATUS '0101'.
+  SET TITLEBAR '0101'.
+ENDMODULE.
+
+MODULE get_pbovalues INPUT.
+  PERFORM user_command USING sy-ucomm gv_selfield.
+ENDMODULE.
+DATA: gv_column_name TYPE string.
+FORM user_command USING p_ucomm TYPE sy-ucomm
+                        p_selfield TYPE slis_selfield.
+  CASE p_ucomm.
+    WHEN '&BACK'.
+      IF gv_admin EQ 'X'.
+        LEAVE TO SCREEN 0.
+      ENDIF.
+    WHEN '&GRS'.
+      PERFORM get_loginscreen.
+    WHEN OTHERS.
+  ENDCASE.
+ENDFORM.
+*&---------------------------------------------------------------------*
+
+FORM clickkk .
+
+ENDFORM.

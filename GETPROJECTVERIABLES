@@ -1,0 +1,41 @@
+
+
+*Get Screen Veriables
+DATA: gv_name     TYPE char20,
+      gv_password TYPE char20.
+
+*Get Sql Table Veriables
+DATA: gv_user_tbl TYPE TABLE OF zbk_user_tbl,
+      gs_user_tbl TYPE zbk_user_tbl,
+      gv_name_tbl TYPE zbk_user_tbl-user_name,
+      gv_pswd_tbl TYPE zbk_user_tbl-user_password.
+
+*Get sflight table veriables
+DATA: gv_list TYPE TABLE OF sflight,
+      gs_list TYPE sflight.
+
+*Get Events Values
+DATA: gv_events TYPE slis_t_event,
+      gs_events TYPE slis_alv_event.
+
+*Get Fieldcatalog veriables
+DATA: gv_fieldcatalog TYPE slis_t_fieldcat_alv,
+      gs_fieldcatalog TYPE slis_fieldcat_alv.
+
+*Get Layout Values
+DATA gv_layout TYPE slis_layout_alv.
+
+*Get Users And Button Values.
+DATA gv_admin TYPE abap_bool.
+DATA gv_staff TYPE abap_bool.
+
+*Get PBO-PAI veriables
+DATA gv_selfield TYPE slis_selfield.
+
+*Get Excluding Values
+DATA: gv_excluding TYPE slis_t_extab,
+      gs_excluding TYPE slis_extab.
+
+DATA: gv_click TYPE string.
+
+DATA: gv_grid  TYPE REF TO cl_gui_alv_grid.

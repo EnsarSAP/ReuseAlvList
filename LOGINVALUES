@@ -1,0 +1,46 @@
+FORM get_loginscreen .
+  " Bo#luklar# temizle ve büyük harfe dönü#tür
+  CONDENSE gv_name NO-GAPS.
+  CONDENSE gv_password NO-GAPS.
+  gv_name = to_upper( gv_name ).
+  gv_password = to_upper( gv_password ).
+
+  " Kullan#c# ad# ve #ifreyi kontrol etmek için veritaban# sorgusu
+  SELECT user_name user_password
+    INTO (gv_name_tbl, gv_pswd_tbl)
+    FROM zbk_user_tbl
+    WHERE user_name = gv_name
+      AND user_password = gv_password.
+  ENDSELECT.
+  " E#er kullan#c# ad# ve #ifre e#le#iyorsa
+  IF sy-subrc = 0.
+    IF gv_name_tbl = 'ADMIN' AND gv_pswd_tbl = '123456'.
+      MESSAGE 'Ho#geldiniz Say#n Yöneticimiz' TYPE 'I'.
+      gv_admin = 'X'.
+
+*Get Events Values
+      PERFORM get_statuseventvalues.
+
+* Get FieldCatalog And ReuseAlv Values
+      PERFORM get_fieldcatalogvalues.
+      PERFORM get_reusealvfunch.
+      LEAVE TO SCREEN 0.
+    ELSEIF gv_name_tbl = 'STAFF' AND gv_pswd_tbl = '123456'.
+      MESSAGE 'Ho#geldiniz Say#n Kullan#c#m#z' TYPE 'I'.
+      gv_admin = 'X'.
+
+* Get Events values
+      PERFORM get_statuseventvalues.
+
+* Get FieldCatalog And ReuseAlv Values
+      PERFORM get_fieldcatalogvalues.
+      PERFORM get_reusealvfunch.
+
+      LEAVE TO SCREEN 0.
+    ENDIF.
+  ELSE.
+    MESSAGE 'Kullan#c# ad# veya #ifre hatal#!' TYPE 'I'.
+    LEAVE TO SCREEN 100.
+  ENDIF.
+
+ENDFORM.

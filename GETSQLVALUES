@@ -1,0 +1,4 @@
+
+FORM get_flysqlvalues .
+  SELECT * FROM sflight INTO TABLE gv_list.
+ENDFORM.

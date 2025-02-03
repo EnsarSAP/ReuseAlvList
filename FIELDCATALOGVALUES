@@ -1,0 +1,35 @@
+
+
+
+FORM get_layoutvalues .
+  gv_layout-zebra = abap_true.
+  gv_layout-colwidth_optimize = abap_true.
+ENDFORM.
+
+FORM get_fieldcatalogvalues .
+  PERFORM: get_fldctlglist USING 'CARRID' 'CRID' 'CARID' 'CARRID' abap_true '1',
+           get_fldctlglist USING 'CONNID' 'CNID' 'CONID' 'CONNID' abap_true '2',
+           get_fldctlglist USING 'FLDATE' 'FLDT' 'FLDAT' 'FLDATE' abap_true '3',
+           get_fldctlglist USING 'PRICE' 'PRIC' 'PRIC ' 'PRICE ' abap_true '4',
+           get_fldctlglist USING 'CURRENCY' 'CRNC' 'CURRY' 'CURRENCY' abap_true '5',
+           get_fldctlglist USING 'PLANETYPE' 'PLNT' 'PLANT' 'PLANETYPE' abap_true '6',
+           get_fldctlglist USING 'SEATSMAX' 'STMS' 'SETAS' 'SEATSMAX' abap_true '7',
+           get_fldctlglist USING 'SEATSOCC' 'STSC' 'SETSC' 'SEATSOCC' abap_true '8',
+           get_fldctlglist USING 'PAYMENTSUM' 'PYMN' 'PAYMNT' 'PAYMENTSUM' abap_true '9'.
+ENDFORM.
+
+FORM get_fldctlglist USING p_fieldname
+                           p_seltext_s
+                           p_seltext_m
+                           p_seltext_l
+                           p_key
+                           p_colpos.
+  CLEAR: gs_fieldcatalog.
+  gs_fieldcatalog-fieldname = p_fieldname.
+  gs_fieldcatalog-seltext_s = p_seltext_s.
+  gs_fieldcatalog-seltext_m = p_seltext_m.
+  gs_fieldcatalog-seltext_l = p_seltext_l.
+  gs_fieldcatalog-key       = p_key.
+  gs_fieldcatalog-col_pos   = p_colpos.
+  APPEND gs_fieldcatalog TO gv_fieldcatalog.
+ENDFORM.
